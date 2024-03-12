@@ -35,7 +35,7 @@ export default function Login({ status, canResetPassword }) {
                 <span className='font-bold pr-1'>
                     Selamat Datang!
                 </span>
-                Silakan masukkan NPM dan Password 
+                Silakan masukkan NIM dan Password 
             </div>
             <form onSubmit={submit}>
                 <div>
