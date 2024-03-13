@@ -42,21 +42,21 @@ export default function Dashboard({ auth }) {
                                 class="font-semibold text-2xl text-indigo-900 p-4">
                                     Lain-lain
                                 </p>
-                            <Link href={route('admin.mahasiswa')}>
+                            <Link href={route('dosen.index')}>
                                 <p
                                     class="font-thin text-base text-indigo-900 px-4 pb-2 hover:underline">
                                     Kelola Dosen
                                     <ArrowTopRightOnSquareIcon className="h-4 w-4 inline-block" />
                                 </p>
                             </Link>
-                            <Link href={route('admin.ta')}>
+                            <Link href={route('file.index')}>
                                 <p
                                     class="font-thin text-base text-indigo-900 px-4 pb-2 hover:underline">
                                     Kelola Download Area
                                     <ArrowTopRightOnSquareIcon className="h-4 w-4 inline-block" />
                                 </p>
                             </Link>
-                            <Link href={route('admin.mahasiswa')}>
+                            <Link href={route('pengumuman.index')}>
                                 <p
                                     class="font-thin text-base text-indigo-900 px-4 pb-2 hover:underline">
                                     Kelola Informasi
