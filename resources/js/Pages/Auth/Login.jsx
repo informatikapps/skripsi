@@ -33,7 +33,7 @@ export default function Login({ status, canResetPassword }) {
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
             <div className='flex my-3 text-gray-500'>
                 <span className='font-bold pr-1'>
-                    Selamat Datang!
+                    Selamat Datang!!
                 </span>
                 Silakan masukkan NIM dan Password 
             </div>
