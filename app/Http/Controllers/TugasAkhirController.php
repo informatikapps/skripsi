@@ -73,7 +73,7 @@ class TugasAkhirController extends Controller
     public function admincreate()
     {
         $dosen = Dosen::all();
-        $image = base64_encode(file_get_contents(public_path('image\contoh2.jpg')));
+        $image = base64_encode(file_get_contents(public_path('image/contoh2.jpg')));
         // dd($image);
         return Inertia::render('Admin/TugasAkhir/Create', ['dosen' => $dosen, 'image' => $image, ]);
     }

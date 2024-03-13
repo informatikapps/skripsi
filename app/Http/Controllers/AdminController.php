@@ -89,7 +89,7 @@ class AdminController extends Controller
     public function mahasiswaCreate()
     {
 
-        $image = base64_encode(file_get_contents(public_path('image\contoh1.jpg')));
+        $image = base64_encode(file_get_contents(public_path('image/contoh1.jpg')));
         // dd($image);
 
         return Inertia::render('Admin/Mahasiswa/Create', [
