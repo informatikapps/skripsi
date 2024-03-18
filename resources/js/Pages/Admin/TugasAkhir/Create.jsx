@@ -56,6 +56,7 @@ export default function CreateTA({ auth, errors, status, image, dosen }) {
 
     const handleSubmitBulk = (e) => {
         e.preventDefault()
+        console.log('data.file', data.file)
         if (hideFile) {
             data.file.map((item, index) => {
                 post(route('admin.tacreatepost'), {
