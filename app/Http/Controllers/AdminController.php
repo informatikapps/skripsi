@@ -99,7 +99,7 @@ class AdminController extends Controller
 
     public function mahasiswaCreatePost(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         if ($request->file != null) {
             foreach ($request->file as $file) {
                 $user = User::create([
