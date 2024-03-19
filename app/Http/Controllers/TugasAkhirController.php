@@ -166,6 +166,12 @@ class TugasAkhirController extends Controller
         return redirect(route('admin.taedit', $id));
     }
 
+    public function delete($id){
+        $ta = TugasAkhir::find($id);
+        $ta->delete();
+        return redirect(route('admin.ta'));
+    }
+
     public function create(){
         $mahasiswa = Mahasiswa::where('user_id', auth()->user()->id)->first();
         $mahasiswa->dosen_pembimbing_1 = Dosen::find($mahasiswa->dosen_pembimbing_1);

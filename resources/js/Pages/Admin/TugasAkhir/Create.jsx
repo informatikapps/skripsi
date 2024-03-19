@@ -306,8 +306,7 @@ export default function CreateTA({ auth, errors, status, image, dosen }) {
                                     <div className='flex-row-reverse'>
                                         <PrimaryButton
                                             type="submit"
-                                            className="w-24 justify-start bg-amber-500 hover:bg-amber-600 mt-2 ml-2"
-                                            onClick={() => console.log('data.file', data.file)}
+                                            className="w-24 justify-start bg-amber-500 hover:bg-amber-600 mt-2 ml-1"
                                         >
                                             Tambah
                                         </PrimaryButton>

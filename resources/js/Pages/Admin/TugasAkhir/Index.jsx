@@ -6,7 +6,7 @@ import Table from '@/Components/Table';
 import { Fragment, useState, useEffect, useRef } from 'react';
 import Pagination from '@/Components/Pagination';
 import { UserCircleIcon, AdjustmentsHorizontalIcon } from '@heroicons/react/20/solid';
-import { Popover, Transition, Switch } from '@headlessui/react';
+import { Popover, Transition, Switch, Dialog } from '@headlessui/react';
 import { usePrevious } from 'react-use';
 import TextInput from '@/Components/TextInput';
 import { PlusIcon } from '@heroicons/react/20/solid';
@@ -18,8 +18,28 @@ export default function IndexTA({ auth, tugasakhir, status_acc, search }) {
 
     const [enabled, setEnabled] = useState(false); // this is actually a VERY BAD practice, but I'm too lazy to change the variable name
     const [searchKeyword, setSearchKeyword] = useState(''); // this is actually a VERY BAD practice, but I'm too lazy to change the variable name
+    const [isOpen, setIsOpen] = useState(false);
+    const [deleteItemId, setDeleteItemId] = useState(null); // State to store the ID of the item to delete
 
     const inputRef = useRef(null);
+    const openModal = (id) => {
+        setDeleteItemId(id); // Set the ID of the item to delete
+        setIsOpen(true);
+    };
+
+    const closeModal = () => {
+        if (deleteItemId) {
+            // Execute the deletion and refresh actions
+            router.delete(route('admin.tadelete', deleteItemId)).then(() => {
+                router.reload(); // Refresh the page after deletion
+            });
+        }
+        setIsOpen(false);
+    };
+
+    const Cancel = () => {
+        setIsOpen(false)
+    }
 
     console.log('enabled', enabled)
 
@@ -174,11 +194,72 @@ export default function IndexTA({ auth, tugasakhir, status_acc, search }) {
                                                         </Link>
                                                         <SecondaryButton
                                                             className='mr-1 my-1'
+                                                            onClick={() => openModal(item.id)}
                                                         >
                                                             Hapus
                                                         </SecondaryButton>
-                                                    </td>
+                                                        <Transition appear show={isOpen} as={Fragment}>
+                                                            <Dialog as="div" className="relative z-10" onClose={Cancel}>
+                                                                <Transition.Child
+                                                                    as={Fragment}
+                                                                    enter="ease-out duration-50"
+                                                                    enterFrom="opacity-0"
+                                                                    enterTo="opacity-100"
+                                                                    leave="ease-in duration-50"
+                                                                    leaveFrom="opacity-100"
+                                                                    leaveTo="opacity-0"
+                                                                >
+                                                                    <div className="fixed inset-0 bg-gray-500/10" />
+                                                                </Transition.Child>
 
+                                                                <div className="fixed inset-0 overflow-y-auto">
+                                                                    <div className="flex min-h-full items-center justify-center p-4 text-center">
+                                                                        <Transition.Child
+                                                                            as={Fragment}
+                                                                            enter="ease-out duration-50"
+                                                                            enterFrom="opacity-0 scale-95"
+                                                                            enterTo="opacity-100 scale-100"
+                                                                            leave="ease-in duration-50"
+                                                                            leaveFrom="opacity-100 scale-100"
+                                                                            leaveTo="opacity-0 scale-95"
+                                                                        >
+                                                                            <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                                                                                <Dialog.Title
+                                                                                    as="h3"
+                                                                                    className="text-lg font-medium leading-6 text-gray-900"
+                                                                                >
+                                                                                    Konfirmasi Penghapusan
+                                                                                </Dialog.Title>
+                                                                                <div className="mt-2">
+                                                                                    <p className="text-sm text-gray-500">
+                                                                                        Anda yakin ingin menghapus data ini?
+                                                                                    </p>
+                                                                                </div>
+
+
+
+                                                                                <div className="mt-4">
+                                                                                    <PrimaryButton
+                                                                                        className='mr-1 my-2'
+                                                                                        onClick={closeModal}
+                                                                                    >
+                                                                                        Hapus
+                                                                                    </PrimaryButton>
+                                                                                    <SecondaryButton
+                                                                                        className='mr-1 my-2'
+                                                                                        onClick={Cancel}
+                                                                                    >
+                                                                                        Batal
+                                                                                    </SecondaryButton>
+                                                                                </div>
+                                                                            </Dialog.Panel>
+                                                                        </Transition.Child>
+                                                                    </div>
+                                                                </div>
+                                                            </Dialog>
+                                                        </Transition>
+                                                    </td>
+                                                    
                                                 </tr>
 
                                             ))
