@@ -5,10 +5,13 @@ import { useState } from 'react'
 
 export default function Pagination({links}) {
 
-    const [active, setActive] = useState(links.filter((link) => link.active)[0].label)
+    // const [active, setActive] = useState(links.filter((link) => link.active)[0].label)
+    const active = links.filter((link) => link.active)[0].label
+    // console.log('links', links)
     const className = "relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0"
     const className_active = "relative z-10 inline-flex items-center bg-amber-400 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" 
     
+    // console.log('active', active)
     // console.log('active', active)
     return (
         <div className="flex items-center justify-between border-t border-gray-200 bg-none px-4 py-3 sm:px-6">

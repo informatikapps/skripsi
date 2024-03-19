@@ -31,7 +31,7 @@ export default function IndexTA({ auth, tugasakhir, status_acc, search }) {
         if (deleteItemId) {
             // Execute the deletion and refresh actions
             router.delete(route('admin.tadelete', deleteItemId)).then(() => {
-                router.reload(); // Refresh the page after deletion
+                router.reload() // Refresh the page after deletion
             });
         }
         setIsOpen(false);
