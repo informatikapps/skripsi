@@ -178,6 +178,7 @@ class TugasAkhirController extends Controller
         $mahasiswa->dosen_pembimbing_2 = Dosen::find($mahasiswa->dosen_pembimbing_2);
         $now = date('Y-m-d');
         $mid = date('Y') . '-07-01';
+        // dd($mahasiswa->dosen_pembimbing_1 == null || $mahasiswa->dosen_pembimbing_2 == null);
         if($now < $mid){
             $periode = 'Genap '. date('Y') - 1 . '/' . date('Y');
         }else{
@@ -185,9 +186,15 @@ class TugasAkhirController extends Controller
         }
         // $mahasiswa->nama_pembimbing_1 = Dosen::find($mahasiswa->dosen_pembimbing_1);
         // $mahasiswa->nama_pembimbing_2 = Dosen::find($mahasiswa->dosen_pembimbing_2);
-        $ta = TugasAkhir::where('user_id', auth()->user()->id)->first();
+        if($mahasiswa->dosen_pembimbing_1 == null || $mahasiswa->dosen_pembimbing_2 == null){
+            return redirect()->back();
+        }
+        if(TugasAkhir::where('user_id', auth()->user()->id)->first()){
+            $ta = TugasAkhir::where('user_id', auth()->user()->id)->first();
+            return Inertia::render('Mahasiswa/TugasAkhir/Saya', ['mahasiswa' => $mahasiswa, 'tugasAkhir' => $ta, 'periode' => $periode]);
+        }
+        return Inertia::render('Mahasiswa/TugasAkhir/Saya', ['mahasiswa' => $mahasiswa, 'periode' => $periode, 'tugasAkhir' => false]);
         // dd($mahasiswa);
-        return Inertia::render('Mahasiswa/TugasAkhir/Saya', ['mahasiswa' => $mahasiswa, 'tugasAkhir' => $ta, 'periode' => $periode]);
     }
 
     public function store(Request $request){
@@ -211,12 +218,7 @@ class TugasAkhirController extends Controller
             $ta->save();
             return redirect(route('tugasakhir.create'));
         }
-        $file = $request->file('file');
-        if($file){
-            $nama_file = time() .' - '. $request->judul. '.'. $file->getClientOriginalExtension();
-            $file->storeAs('public/files', $nama_file);
-        }
-
+        
         $ta = TugasAkhir::create([
             'user_id' => auth()->user()->id,
             'nama_mhs' => auth()->user()->name,
@@ -224,12 +226,17 @@ class TugasAkhirController extends Controller
             'judul_ta' => $request->judul,
             'abstrak' => $request->abstrak,
             'periode' => $request->periode,
-            'file' => $nama_file,
             'ni_pembimbing_1' => $mahasiswa->dosen_pembimbing_1->nip,
             'ni_pembimbing_2' => $mahasiswa->dosen_pembimbing_2->nip,
             'nama_pembimbing_1' => $mahasiswa->dosen_pembimbing_1->nama_dosen,
             'nama_pembimbing_2' => $mahasiswa->dosen_pembimbing_2->nama_dosen,
         ]);
+        $file = $request->file('file');
+        if($file){
+            $nama_file = time() .' - '. $request->judul. '.'. $file->getClientOriginalExtension();
+            $file->storeAs('public/files', $nama_file);
+            $ta->file = $nama_file;
+        }
         return redirect(route('tugasakhir.create'));
         // dd($mahasiswa);
     }

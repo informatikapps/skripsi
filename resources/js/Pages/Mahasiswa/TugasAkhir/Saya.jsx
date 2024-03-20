@@ -9,10 +9,10 @@ import { useState } from 'react';
 export default function Saya({ auth, mahasiswa, tugasAkhir, periode }) {
 
     const { data, setData, post, processing, errors, reset } = useForm({
-        judul: (tugasAkhir !== null ? tugasAkhir.judul_ta : ''),
-        abstrak: (tugasAkhir !== null ? tugasAkhir.abstrak : ''),
-        periode: (tugasAkhir !== null ? tugasAkhir.periode : periode),
-        file: (tugasAkhir !== null ? tugasAkhir.file : ''),
+        judul: (tugasAkhir ? tugasAkhir.judul_ta : ''),
+        abstrak: (tugasAkhir  ? tugasAkhir.abstrak : ''),
+        periode: (tugasAkhir ? tugasAkhir.periode : periode),
+        file: (tugasAkhir ? tugasAkhir.file : ''),
     });
 
     const [hideUploader, setHideUploader] = useState(tugasAkhir.file ? true : false)
