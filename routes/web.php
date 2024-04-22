@@ -57,6 +57,7 @@ Route::middleware(['is_admin'])->group(function () {
     Route::get('/admin/mahasiswa', [App\Http\Controllers\AdminController::class, 'mahasiswa'])->name('admin.mahasiswa');
     Route::get('/admin/mahasiswa/create', [App\Http\Controllers\AdminController::class, 'mahasiswaCreate'])->name('admin.mahasiswacreate');
     Route::post('/admin/mahasiswa/create', [App\Http\Controllers\AdminController::class, 'mahasiswaCreatePost'])->name('admin.mahasiswacreatepost');
+    Route::post('/admin/mahasiswa/import', [App\Http\Controllers\AdminController::class, 'import'])->name('admin.mahasiswaimport');
     Route::get('/admin/mahasiswa/{id}', [App\Http\Controllers\AdminController::class, 'mahasiswaEdit'])->name('admin.mahasiswaedit');
     Route::patch('/admin/mahasiswa/{id}', [App\Http\Controllers\AdminController::class, 'mahasiswaEditPost'])->name('admin.mahasiswaeditpost');
     Route::delete('/admin/mahasiswa/{id}', [App\Http\Controllers\AdminController::class, 'mahasiswaDelete'])->name('admin.mahasiswadelete');

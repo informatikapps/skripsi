@@ -31,8 +31,8 @@ export default function CreateTA({ auth, errors, status, image, dosen }) {
 
     const periodes = []
     for (let i = 2010; i <= this_date.getFullYear(); i++) {
-        periodes.push('Gasal ' + i)
-        periodes.push('Genap ' + i)
+        periodes.push('Gasal ' + i + '/' + (i + 1))
+        periodes.push('Genap ' + i + '/' + (i + 1))
     }
 
     

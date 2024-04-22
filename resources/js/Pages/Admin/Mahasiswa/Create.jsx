@@ -17,15 +17,11 @@ export default function Example({ auth, errors, status, image }) {
     const { data, setData, post, processing, errors: formErrors } = useForm({
         name: '',
         nim: '',
-        file: null,
+        mhsJson: null,
     });
-
+    // console.log('data', data)
     const [hideFile, setHideFile] = useState(true)
-    const [tempFile, setTempFile] = useState(null)
     const [isDragOver, setIsDragOver] = useState(false)
-
-
-
 
     // console.log('helo')
     // console.log(image)
@@ -33,7 +29,7 @@ export default function Example({ auth, errors, status, image }) {
     // console.log('file', tempFile)
 
     const handleCancelFile = () => {
-        setData('file', '')
+        setData('mhsJson', '')
         setHideFile(!hideFile)
     }
 
@@ -62,14 +58,14 @@ export default function Example({ auth, errors, status, image }) {
             // Convert sheet data to JSON
             const jsonData = XLSX.utils.sheet_to_json(sheet);
             // console.log('JSON Data:', jsonData);
-            setData('file', jsonData)
+            setData('mhsJson', jsonData)
             setHideFile(!hideFile)
         }
 
         if (file) {
             reader.readAsArrayBuffer(file);
         }
-        onUpload(file)  // this is the function that will handle the file upload
+        onUpload(mhsJson)  // this is the function that will handle the file upload
     }
 
 
@@ -82,20 +78,21 @@ export default function Example({ auth, errors, status, image }) {
     }
 
     const handleSubmitBulk = (e) => {
+        //console.log('submit bulk')
         e.preventDefault()
-        if (hideFile) {
-            data.file.map((item, index) => {
-                post(route('admin.mahasiswacreatepost'), {
-                    nim: item.NIM,
-                    name: item.Nama,
-                })
-            })
+        if (!hideFile) {
+            console.log('hideFile', hideFile)
+            post(route('admin.mahasiswaimport'),
+                {
+                    file: data.mhsJson
+                }
+            )
         }
     }
 
     const handleFileUpload = (files) => {
         const file = files[0];
-        console.log('file', file)
+        // console.log('file', file)
         const reader = new FileReader();
 
         reader.onload = (e) => {
@@ -108,8 +105,8 @@ export default function Example({ auth, errors, status, image }) {
 
             // Convert sheet data to JSON
             const jsonData = XLSX.utils.sheet_to_json(sheet);
-            // console.log('JSON Data:', jsonData);
-            setData('file', jsonData)
+            setData('mhsJson', jsonData)
+            //console.log('mhsJson', data.name)
             setHideFile(!hideFile)
         };
 
@@ -141,7 +138,7 @@ export default function Example({ auth, errors, status, image }) {
                                             : 'text-blue-100 hover:bg-white/[0.12] hover:text-white'
                                     )
                                 }
-                                onClick={() => setData('file', null)}
+                                onClick={() => setData('mhsJson', null)}
                             >
                                 Isi Nama dan NIM
                             </Tab>

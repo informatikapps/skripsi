@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
+
 class AdminController extends Controller
 {
     public function index()
@@ -113,19 +114,29 @@ class AdminController extends Controller
                     'user_id' => $user->id,
                 ]);
             }
-        } else {
-            $user = User::create([
-                'name' => $request->name,
-                'username' => $request->nim,
-                'is_admin' => false,
-                'password' => bcrypt('123456'),
-                'has_set_password' => false,
-            ]);
-            Mahasiswa::create([
-                'user_id' => $user->id,
-            ]);
         }
         return redirect(route('admin.mahasiswa'));
+    }
+
+
+    public function import(Request $request)
+    {
+        if($request->mhsJson != null){
+            // dd($request->mhsJson[0]["NIM"]);
+            foreach ($request->mhsJson as $mahasiswa) {
+                $user = User::create([
+                    'name' => $mahasiswa["Nama"],
+                    'username' => $mahasiswa["NIM"],
+                    'is_admin' => false,
+                    'password' => bcrypt('123456'),
+                    'has_set_password' => false,
+                ]);
+                Mahasiswa::create([
+                    'user_id' => $user->id,
+                ]);
+            }
+        }
+        return redirect(route('admin.mahasiswa'));  
     }
 
     public function tugasakhir()
