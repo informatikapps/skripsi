@@ -100,21 +100,16 @@ class AdminController extends Controller
 
     public function mahasiswaCreatePost(Request $request)
     {
-        // dd($request->all());
-        if ($request->file != null) {
-            foreach ($request->file as $file) {
-                $user = User::create([
-                    'name' => $file["Nama"],
-                    'username' => $file["NIM"],
-                    'is_admin' => false,
-                    'password' => bcrypt('123456'),
-                    'has_set_password' => false,
-                ]);
-                Mahasiswa::create([
-                    'user_id' => $user->id,
-                ]);
-            }
-        }
+        $user = User::create([
+            'name' => $request->name,
+            'username' => $request->nim,
+            'is_admin' => false,
+            'password' => bcrypt('123456'),
+            'has_set_password' => false,
+        ]);
+        $mahasiswa = Mahasiswa::create([
+            'user_id' => $user->id,
+        ]);
         return redirect(route('admin.mahasiswa'));
     }
 

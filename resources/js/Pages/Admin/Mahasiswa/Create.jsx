@@ -70,6 +70,7 @@ export default function Example({ auth, errors, status, image }) {
 
 
     const handleSubmit = (e) => {
+        // console.log('submit')
         e.preventDefault()
         post(route('admin.mahasiswacreatepost'), {
             nim: data.nim,
