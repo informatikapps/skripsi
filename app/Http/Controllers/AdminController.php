@@ -121,12 +121,15 @@ class AdminController extends Controller
 
     public function import(Request $request)
     {
+        // dd($request->mhsJson);
         if($request->mhsJson != null){
             // dd($request->mhsJson[0]["NIM"]);
-            foreach ($request->mhsJson as $mahasiswa) {
+            $mahasiswas = json_decode($request->mhsJson);
+            // dd($mahasiswas[0);
+            foreach ($mahasiswas as $mahasiswa) {
                 $user = User::create([
-                    'name' => $mahasiswa["Nama"],
-                    'username' => $mahasiswa["NIM"],
+                    'name' => $mahasiswa->Nama,
+                    'username' => $mahasiswa->NIM,
                     'is_admin' => false,
                     'password' => bcrypt('123456'),
                     'has_set_password' => false,
@@ -196,4 +199,5 @@ class AdminController extends Controller
     {
         return Inertia::render('Admin/Test');
     }
+
 }

@@ -58,7 +58,7 @@ export default function Example({ auth, errors, status, image }) {
             // Convert sheet data to JSON
             const jsonData = XLSX.utils.sheet_to_json(sheet);
             // console.log('JSON Data:', jsonData);
-            setData('mhsJson', jsonData)
+            setData('mhsJson', jsonData.stringify())
             setHideFile(!hideFile)
         }
 
@@ -105,7 +105,7 @@ export default function Example({ auth, errors, status, image }) {
 
             // Convert sheet data to JSON
             const jsonData = XLSX.utils.sheet_to_json(sheet);
-            setData('mhsJson', jsonData)
+            setData('mhsJson', JSON.stringify(jsonData))
             //console.log('mhsJson', data.name)
             setHideFile(!hideFile)
         };

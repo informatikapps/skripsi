@@ -75,6 +75,7 @@ Route::middleware(['is_admin'])->group(function () {
     Route::resource('admin/file', FileController::class);
     Route::get('admin/profile', [ProfileController::class, 'edit'])->name('admin.profile');
     Route::get('admin/ta/{id}', [TugasAkhirController::class, 'show'])->name('admin.tashow');
+    Route::get('admin/testdelete', [App\Http\Controllers\AdminController::class, 'testdel'])->name('admin.testdelete');
 
 });
 Route::post('/admin/login', [App\Http\Controllers\AdminController::class, 'loginPost'])->name('adminloginpost');
