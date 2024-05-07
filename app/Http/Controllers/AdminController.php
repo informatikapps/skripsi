@@ -190,6 +190,14 @@ class AdminController extends Controller
         return redirect(route('admin.mahasiswa'));
     }
 
+    public function updateUser(Request $request)
+    {
+        $user = User::find(auth()->user()->id);
+        $user->username = $request->username;
+        $user->save();
+        return redirect(route('admin'));
+    }
+
     public function test()
     {
         return Inertia::render('Admin/Test');

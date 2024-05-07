@@ -19,7 +19,7 @@ export default function Example({ auth, errors, status, image }) {
         nim: '',
         mhsJson: null,
     });
-    // console.log('data', data)
+    // console.log('data', JSON.parse(data.mhsJson).length)
     const [hideFile, setHideFile] = useState(true)
     const [isDragOver, setIsDragOver] = useState(false)
 
@@ -253,23 +253,37 @@ export default function Example({ auth, errors, status, image }) {
                                                             <th className="px-4 py-2 bg-slate-100">Nama</th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody>
-                                                        {data.file &&
-                                                            data.file.slice(0, 3).map((item, index) => (
+                                                    {JSON.parse(data.mhsJson).length > 3 ? 
+
+                                                        <tbody>
+                                                        {data.mhsJson &&
+                                                            JSON.parse(data.mhsJson).slice(0, 2).map((item, index) => (
                                                                 <tr key={index}>
                                                                     <td className="border px-4 py-2">{item.NIM}</td>
                                                                     <td className="border px-4 py-2">{item.Nama}</td>
                                                                 </tr>
                                                             ))
                                                         }
-                                                        {data.file &&
+                                                        {data.mhsJson &&
                                                             <tr>
                                                                 <td className="border px-4 py-2">...</td>
                                                                 <td className="border px-4 py-2">...</td>
                                                             </tr>
                                                         }
-                                                        {data.file &&
-                                                            data.file.slice(-1).map((item, index) => (
+                                                        {data.mhsJson &&
+                                                            JSON.parse(data.mhsJson).slice(-1).map((item, index) => (
+                                                                <tr key={index}>
+                                                                    <td className="border px-4 py-2">{item.NIM}</td>
+                                                                    <td className="border px-4 py-2">{item.Nama}</td>
+                                                                </tr>
+                                                            ))
+                                                        }
+                                                    
+                                                    </tbody>
+                                                    :
+                                                    <tbody>
+                                                        {data.mhsJson &&
+                                                            JSON.parse(data.mhsJson).map((item, index) => (
                                                                 <tr key={index}>
                                                                     <td className="border px-4 py-2">{item.NIM}</td>
                                                                     <td className="border px-4 py-2">{item.Nama}</td>
@@ -277,6 +291,7 @@ export default function Example({ auth, errors, status, image }) {
                                                             ))
                                                         }
                                                     </tbody>
+                                            }
                                                 </table>
                                                 <button onClick={handleCancelFile} className='mx-auto mt-4 bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded'>Ganti File</button>
                                             </div>

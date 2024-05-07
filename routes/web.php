@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DosenController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\PengumumanController;
@@ -76,6 +77,7 @@ Route::middleware(['is_admin'])->group(function () {
     Route::get('admin/profile', [ProfileController::class, 'edit'])->name('admin.profile');
     Route::get('admin/ta/{id}', [TugasAkhirController::class, 'show'])->name('admin.tashow');
     Route::get('admin/testdelete', [App\Http\Controllers\AdminController::class, 'testdel'])->name('admin.testdelete');
+    Route::patch('admin/profile', [AdminController::class, 'updateUser'])->name('admin.update');
 
 });
 Route::post('/admin/login', [App\Http\Controllers\AdminController::class, 'loginPost'])->name('adminloginpost');

@@ -25,7 +25,7 @@ export default function Password({auth}){
             <div className="flex">
                 <InputLabel value="Password Lama" className="w-48 my-auto py-2" />
                 <TextInput
-                    className="mt-1 rounded-lg w-1/2"
+                    className="mt-1 rounded-lg w-1/3"
                     name="password"
                     type="password"
                     autoComplete="old-password"
@@ -36,7 +36,7 @@ export default function Password({auth}){
             <div className="flex">
                 <InputLabel value="Password Baru" className="w-48 my-auto py-2" />
                 <TextInput
-                    className="mt-1 rounded-lg w-1/2"
+                    className="mt-1 rounded-lg w-1/3"
                     name="password"
                     type="password"
                     autoComplete="password"
@@ -48,7 +48,7 @@ export default function Password({auth}){
             <div className="flex">
                 <InputLabel value="Konfirmasi Password Baru" className="w-48 my-auto py-2" />
                 <TextInput
-                    className="mt-1 rounded-lg w-1/2"
+                    className="mt-1 rounded-lg w-1/3"
                     name="password"
                     type="password"
                     autoComplete="new-password"
