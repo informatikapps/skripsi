@@ -100,7 +100,7 @@ export default function CreateTA({ auth, errors, status, image, dosen }) {
             refback={route('admin.ta')}
         >
             <Head title="Tambah Tugas Akhir" />
-            <section className='8 bg-slate-100 shadow rounded-b-xl mx-12 overflow-y-auto'>
+            <section className=' bg-slate-100 shadow rounded-b-xl mx-20 overflow-y-auto'>
                 <div className="w-full ">
                     <Tab.Group>
                         <Tab.List className="flex space-x-2 rounded-xl bg-blue-900/20 p-1 mx-6 mt-4">

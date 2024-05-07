@@ -46,8 +46,8 @@ class FileController extends Controller
         ]);
 
         $file = $request->file('file');
-        $nama_file = time() .' - '. $request->judul_file. '.'. $file->getClientOriginalExtension();
-        $file->storeAs('public/files', $nama_file);
+        $nama_file = date('Y-m-d') .'_'. $request->judul_file. '.'. $file->getClientOriginalExtension();
+        $file->storeAs('public/files/download_area', $nama_file);
 
         File::create([
             'nama_file' => $request->judul_file,
@@ -65,11 +65,11 @@ class FileController extends Controller
      */
     public function show(string $id)
     {
-        $filePath = File::findOrFail($id)->alamat_url;
+        $filePath = File::findOrFail($id);
         
         // dd($filePath);
         
-        return Storage::download('public/files/'.$filePath);
+        return Storage::download('public/files/download_area/'.$filePath->alamat_url);
     }
 
     /**
@@ -89,7 +89,34 @@ class FileController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // $file = $request->file('file');
+        // $nama_file = time() . ' - ' . $request->judul_file . '.' . $file->getClientOriginalExtension();
+        // $file->storeAs('public/files/download_area', $nama_file);
+
+        // File::create([
+        //     'nama_file' => $request->judul_file,
+        //     'deskripsi' => $request->deskripsi,
+        //     'alamat_url' => $nama_file,
+        //     'user_id' => auth()->user()->id,
+        //     'is_public' => true
+        // ]);
+        $file = File::findOrFail($id);
+        $file->update([
+            'nama_file' => $request->judul_file,
+            'deskripsi' => $request->deskripsi,
+            'user_id' => auth()->user()->id,
+            'is_public' => true
+        ]);
+        if ($request->hasFile('file')) {
+            Storage::delete('public/files/download_area'.$file->alamat_url);
+            $file = $request->file('file');
+            $nama_file = time() . ' - ' . $request->judul_file . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('public/files/download_area', $nama_file);
+            $file->alamat_url = $nama_file;
+            $file->save();
+        }
+
+        return redirect()->route('file.index')->with('success', 'File berhasil ditambahkan');
     }
 
     /**

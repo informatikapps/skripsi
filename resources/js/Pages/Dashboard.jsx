@@ -38,7 +38,7 @@ export default function Dashboard({ auth, informasi, has_set_profile, search }) 
             user={auth.user}
             header={'Beranda'}
             back={false}
-            desc={'Halaman ini berisikan informasi yang diberikan oleh Admin :)'}
+            desc={'Halaman ini berisikan informasi yang diberikan oleh Admin. Anda dapat melihat informasi yang diberikan oleh Admin disini.'}
         >
             <Head title="Beranda" />
 
@@ -54,7 +54,7 @@ export default function Dashboard({ auth, informasi, has_set_profile, search }) 
                         <div className="px-6 pb-3 text-gray-900 text-sm hover:underline">Ubah Profil</div>
                     </Link>
                 </div>}
-                <div className=" bg-slate-100 overflow-hidden shadow-sm mx-20 rounded-lg mt-4 py-3 px-6">
+                <div className=" bg-slate-100 overflow-hidden shadow-sm mx-16 rounded-lg mt-2 py-3 px-6">
                         <div className="flex flex-row-reverse mr-5" >
                             <TextInput
                             ref={inputRef}

@@ -18,6 +18,7 @@ export default function Create() {
 
     const handleCancelFile = () => {
         setData('file', '')
+        console.log('data', data)
         setHideFile(true)
     }
 

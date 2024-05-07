@@ -27,10 +27,12 @@ export default function DownloadArea({ files, search }) {
     
     return(
         <AuthenticatedLayout
-            header={"Download Area"} >
+            header={"Download Area"} 
+            desc={"Halaman ini berisikan file-file yang dapat diunduh. Silakan hubungi Admin bila Anda membutuhkan file lain."}
+            >
             <Head title="Detail Informasi" />
             <div className='max-w-7xl mx-18 space-y-6 mt-2'>
-                <section className='sm:py-8 sm:px-14 bg-slate-100 shadow rounded-xl mx-24'>
+                <section className='sm:py-8 sm:px-14 bg-slate-100 rounded-lg mx-24'>
                     <div className="flex flex-row-reverse" >
                         <TextInput
                             className='w-1/3'

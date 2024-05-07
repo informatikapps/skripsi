@@ -62,22 +62,23 @@ export default function Dashboard({ auth, tugasAkhir, search }) {
             user={auth.user}
             header={'Tugas Akhir'}
             back={false}
+            desc={'Tugas akhir yang terdaftar dalam sistem. Untuk menambahkan tugas akhir anda, silakan kunjungi halaman Tugas Akhir Saya.'}
         >
             <Head title="Dashboard" />
 
-            <div className="sm:px-6 lg:px-8 mt-1">
+            <div className="sm:px-6 lg:px-8 mx-16">
                 <div className="bg-slate-100 overflow-hidden shadow-sm rounded-lg py-4">
-                    <div className="py-1 px-6 text-gray-900">
-                        <div className="flex flex-row-reverse" >
+                    <div className="px-6 text-gray-900">
+                        <div className="flex mx-8" >
                             <TextInput
                                 ref={inputRef}
-                                className='w-1/4'
+                                className='w-1/2'
                                 placeholder='Cari Judul Tugas Akhir..'
                                 value={searchKeyword}
                                 onChange={(e) => setSearchKeyword(e.target.value)}
                             />
                         </div>
-                        <div className='overflow-y-auto px-8 drop-shadow-sm rounded-md my-6'>
+                        <div className='overflow-y-auto px-8 drop-shadow-sm rounded-md my-3'>
                             <Table
                                 colname={['NIM', 'Nama', 'Judul', 'Periode', 'Aksi']}
                                 className='min-w-full divide-y divide-gray-200 text-base'

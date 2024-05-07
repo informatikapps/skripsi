@@ -36,10 +36,11 @@ export default function Saya({ auth, mahasiswa, tugasAkhir, periode }) {
             user={auth.user}
             header={'Tugas Akhir Saya'}
             back={false}
+            desc={'Silakan isi judul dan abstrak dari tugas akhir Anda. Sertakan juga file dari tugas akhir untuk diinput ke dalam sistem.'}
         >
             <Head title="Tugas Akhir Saya" />
 
-            <section className="sm:px-6 lg:px-8 mt-1 mx-24 rounded-lg">
+            <section className="sm:px-6 lg:px-8 mt-1 mx-16 rounded-lg">
                 <div className="bg-slate-100 max-h-[87vh] overflow-y-auto shadow-sm rounded-lg">
                     {mahasiswa.dosen_pembimbing_1 && mahasiswa.dosen_pembimbing_2 ?
                         <form
@@ -62,7 +63,7 @@ export default function Saya({ auth, mahasiswa, tugasAkhir, periode }) {
                                     />
 
                                     <TextInput
-                                        className="block py-2 mb-2 w-7/12 disabled:opacity-50"
+                                        className="block py-2 mb-2 w-1/4 disabled:opacity-50"
                                         type="text"
                                         name="nim"
                                         value={auth.user.username}

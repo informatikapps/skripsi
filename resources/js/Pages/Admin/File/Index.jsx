@@ -92,14 +92,14 @@ export default function IndexFile({ auth, files }) {
                                                         {new Date(item.created_at).toLocaleDateString('en-GB')}
                                                     </td>
                                                     <td className='px-2 flex'>
-                                                        <Link href={route('file.show', item.id)}>
+                                                        <a href={route('file.show', item.id)}>
                                                             <SecondaryButton
                                                                 className='mr-1 my-2'
                                                             >
                                                             <ArrowDownTrayIcon className='h-5 w-5 ml-1 mr-2  text-neutral-500' />
                                                                 Download
                                                             </SecondaryButton>
-                                                        </Link>
+                                                        </a>
 
                                                     </td>
                                                     <td className='px-1'>

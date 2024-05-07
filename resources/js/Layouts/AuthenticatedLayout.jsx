@@ -129,15 +129,15 @@ export default function AdminLayout({ user, header, back = true, refback, childr
                         {back && refback ? (
                             <Link href={refback} className="flex">
                             <button className="flex items-center text-indigo-950 dark:text-white">
-                                <ArrowLeftIcon className="w-6 pb-[7px]" />
+                                    <ArrowLeftIcon className="w-8 hover:bg-slate-300 rounded-full p-1" />
                                 <span></span>
                             </button>
                             </Link>
                         ) : null
                         }
-                        <h2 class="text-2xl py-2 ml-3 mb-2 font-semibold text-indigo-950 dark:text-white">{header}</h2>
+                        <h2 class="text-2xl py-2 ml-3 font-semibold text-indigo-950 dark:text-white">{header}</h2>
                     </div>
-                        <h1 className="text-gray-500 font-thin ml-4 my-2">{desc}</h1>
+                        <h1 className="text-gray-500 font-thin ml-4 my-1">{desc}</h1>
                 </div>
                 {children}
             </div>

@@ -211,8 +211,8 @@ class TugasAkhirController extends Controller
             $file = $request->file('file');
             if($file){
                 $nama_file = time() .' - '. $request->judul. '.'. $file->getClientOriginalExtension();
-                $file->storeAs('public/files', $nama_file);
-                Storage::delete('public/files/' . $ta->file);
+                $file->storeAs('public/files/tugas_akhir', $nama_file);
+                Storage::delete('public/files/tugas_akhir' . $ta->file);
                 $ta->file = $nama_file;
             }
             $ta->save();
@@ -234,7 +234,7 @@ class TugasAkhirController extends Controller
         $file = $request->file('file');
         if($file){
             $nama_file = time() .' - '. $request->judul. '.'. $file->getClientOriginalExtension();
-            $file->storeAs('public/files', $nama_file);
+            $file->storeAs('public/files/tugas_akhir', $nama_file);
             $ta->file = $nama_file;
         }
         return redirect(route('tugasakhir.create'));
@@ -246,7 +246,7 @@ class TugasAkhirController extends Controller
         // dd($ta);
 
         // $file = Storage::url('files/' . $ta->file);
-        return Storage::download('public/files/' . $ta->file);
+        return Storage::download('public/files/tugas_akhir/' . $ta->file);
         
     }
 }
