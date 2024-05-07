@@ -89,17 +89,8 @@ class FileController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // $file = $request->file('file');
-        // $nama_file = time() . ' - ' . $request->judul_file . '.' . $file->getClientOriginalExtension();
-        // $file->storeAs('public/files/download_area', $nama_file);
-
-        // File::create([
-        //     'nama_file' => $request->judul_file,
-        //     'deskripsi' => $request->deskripsi,
-        //     'alamat_url' => $nama_file,
-        //     'user_id' => auth()->user()->id,
-        //     'is_public' => true
-        // ]);
+    
+        // dd($request->all());
         $file = File::findOrFail($id);
         $file->update([
             'nama_file' => $request->judul_file,

@@ -9,7 +9,7 @@ import SecondaryButton from '@/Components/SecondaryButton';
 
 export default function Edit({ files }) {
 
-    const { data, setData, post, processing, errors } = useForm({
+    const { data, setData, patch, processing, errors } = useForm({
         judul_file: files.nama_file,
         deskripsi: files.deskripsi,
         file: '',
@@ -18,7 +18,7 @@ export default function Edit({ files }) {
     const [hideFile, setHideFile] = useState(false)
     const [isDragOver, setIsDragOver] = useState(false)
 
-    // console.log('data', data)
+    console.log('data', data)
 
 
     const handleCancelFile = () => {
@@ -53,6 +53,7 @@ export default function Edit({ files }) {
 
     const handleFileUpload = (files) => {
         const file = files[0]
+        // console.log('file')
         if (file) {
             setData('file', file)
             setHideFile(true)
@@ -61,7 +62,8 @@ export default function Edit({ files }) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        post(route('file.store'))
+        // console.log('data', data)   
+        patch(route('file.update', files.id))   
     }
 
 
@@ -73,7 +75,7 @@ export default function Edit({ files }) {
             desc={'Halaman ini berisikan informasi tentang file yang ada di sistem.'}
         >
             <Head title="Edit File" />
-            <form method="post" action={route('file.update', files.id)} className="bg-slate-100 shadow-md rounded items-center px-12 pt-6 pb-8 mb-4 mx-24">
+            <form onSubmit={handleSubmit} className="bg-slate-100 shadow-md rounded items-center px-12 pt-6 pb-8 mb-4 mx-24">
                 <div className="flex my-3">
                     <InputLabel
                         for="judul_file"
@@ -81,7 +83,8 @@ export default function Edit({ files }) {
                         className={'w-fit px-2 py-3'} />
                     <TextInput
                         id="judul_file"
-                        value={files.nama_file}
+                        value={data.judul_file}
+                        onChange={(e) => setData('judul_file', e.target.value)}
                         className="w-1/2"
                     />
                 </div>
@@ -96,21 +99,21 @@ export default function Edit({ files }) {
                         name="deskripsi"
                         className="w-1/2 border rounded-lg py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline border-zinc-300"
                         placeholder="Deskripsi"
-                        value={files.deskripsi}
+                        value={data.deskripsi}
                         onChange={(e) => setData('deskripsi', e.target.value)}
                     />
                 </div>
                 <div className="flex my-3">
                     <InputLabel htmlFor="file" value="Lihat File" className="w-fit px-2 pt-2" />
                     {!hideButton && 
-                    <Link href={route('file.show', files.id)}>
+                    <a href={route('file.show', files.id)}>
                         <SecondaryButton
                             className='mr-1 my-2'
                         >
                             <ArrowDownTrayIcon className='h-5 w-5 ml-1 mr-2  text-neutral-500' />
                             Download File
                         </SecondaryButton>
-                    </Link>}
+                    </a>}
                     <a
                         className="cursor-pointer ml-3 my-3 hover:text-indigo-700 text-indigo-500 dark:text-rose-300 dark:hover:text-rose-400 hover:underline"
                         onClick={handleCancel}
@@ -138,7 +141,7 @@ export default function Edit({ files }) {
                                     <p className="mb-2 text-sm text-gray-500 dark:text-gray-400"><span className="font-semibold">Klik untuk memilih file</span> atau geser dan letakkan file</p>
                                     <p className="text-xs text-gray-500 dark:text-gray-400"></p>
                                 </div>
-                                <input id="dropzone-file" type="file" class="hidden" onChange={(e) => handleFileUpload(e.target.files)} />
+                                <input id="dropzone-file" type="file" class="hidden" onChange={(e) => console.log(e.target.files)} />
                             </label>}
                         {hideFile &&
                             <div className="flex flex-col items-center justify-center w-3/4 h-40 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 dark:border-gray-600 text-gray-500">
