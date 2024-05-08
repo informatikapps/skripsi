@@ -21,7 +21,15 @@ class AdminController extends Controller
         // if(!auth()->user()->is_admin){
         //    return redirect(route("adminlogin")); 
         // }
-        return Inertia::render('Admin/Dashboard');
+        $green = Mahasiswa::whereNotNull('dosen_pembimbing_1')->whereNotNull('dosen_pembimbing_2')->whereNotNull('tema')->whereNotNull('pesan')->count();
+        $yellow = Mahasiswa::whereNull('dosen_pembimbing_1')->whereNull('dosen_pembimbing_2')->whereNotNull('tema')->whereNotNull('pesan')->count();
+        $red = Mahasiswa::whereNull('dosen_pembimbing_1')->whereNull('dosen_pembimbing_2')->whereNull('tema')->whereNotNull('pesan')->count();
+
+        return Inertia::render('Admin/Dashboard', [
+            'green' => $green,
+            'yellow' => $yellow,
+            'red' => $red,
+        ]);
     }
     public function login()
     {

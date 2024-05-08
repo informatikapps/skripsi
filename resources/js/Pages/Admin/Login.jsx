@@ -92,7 +92,7 @@ export default function Login({ status, canResetPassword }) {
                         </Link>
                     )}
 
-                    <PrimaryButton className="ms-4 bg-lime-600" disabled={processing}>
+                    <PrimaryButton className="ms-4 bg-amber-600 text-white" disabled={processing}>
                         Log in
                     </PrimaryButton>
                 </div>

@@ -2,7 +2,7 @@ import AdminAuthenticated from '@/Layouts/AdminLayout';
 import { Head, Link } from '@inertiajs/react';
 import { ArrowTopRightOnSquareIcon } from '@heroicons/react/20/solid';
 
-export default function Dashboard({ auth }) {
+export default function Dashboard({ auth, red, green, yellow }) {
     return (
         <AdminAuthenticated
             user={auth.user}
@@ -46,7 +46,7 @@ export default function Dashboard({ auth }) {
                                     Sedang Mengerjakan Tugas Akhir
                                 </span>
                                 <p className="text-3xl text-green-800 text-center">
-                                    21
+                                    {green}
                                 </p>
                             </div>
                             <div className="bg-yellow-100 overflow-hidden shadow-sm sm:rounded-lg w-1/3 mx-3">
@@ -54,7 +54,7 @@ export default function Dashboard({ auth }) {
                                     Belum Mendapat Dosen Pembimbing
                                 </span>
                                 <p className="text-3xl text-yellow-800 text-center">
-                                    21
+                                    {yellow}
                                 </p>
                             </div>
                             <div className="bg-red-100 overflow-hidden shadow-sm sm:rounded-lg w-1/3 ml-3 pb-4">
@@ -62,7 +62,7 @@ export default function Dashboard({ auth }) {
                                     Belum Mengisi Pesan dan Tema
                                 </span>
                                 <p className="text-3xl text-red-800 text-center">
-                                    21
+                                    {red}
                                 </p>
                             </div>
                         </div>
@@ -97,7 +97,7 @@ export default function Dashboard({ auth }) {
                             </Link>
 
                         </div>
-                        <div className="my-6 flex h-72 bg-slate-100 shadow-sm sm:rounded-lg flex-col">
+                        {/* <div className="my-6 flex h-72 bg-slate-100 shadow-sm sm:rounded-lg flex-col">
                             <p
                                 class="font-semibold text-2xl text-indigo-900 p-4">
                                 Aktivitas
@@ -106,11 +106,11 @@ export default function Dashboard({ auth }) {
                                     Tidak ada aktivitas terbaru    
                                 </p>
                             <div className="flex flex-col overflow-y-scroll max-h-[65%]">
-                                {/* <div className="bg-gray-200 text-gray-800 shadow-sm sm:rounded-lg text-sm mx-4 my-1 px-2 py-2">
+                                <div className="bg-gray-200 text-gray-800 shadow-sm sm:rounded-lg text-sm mx-4 my-1 px-2 py-2">
                                     <b>24060121130057</b> mengisi pesan pada 29 Agustus 2021
-                                </div> */}
+                                </div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </section>
