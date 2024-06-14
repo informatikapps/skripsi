@@ -94,7 +94,7 @@ export default function IndexTA({ auth, tugasakhir, status_acc, search }) {
                                             </PrimaryButton>
                                         </Link>
                                     </div>
-                                    <div className="flex">
+                                    <div className="flex z-10">
                                         <Popover className="relative">
                                             {({ open }) => (
                                                 <>

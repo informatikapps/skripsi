@@ -14,7 +14,7 @@ export default function Pagination({links}) {
     // console.log('active', active)
     // console.log('active', active)
     return (
-        <div className="flex items-center justify-between border-t border-gray-200 bg-none px-4 py-3 sm:px-6">
+        <div className="flex items-center justify-between border-t border-gray-200 bg-none px-4 py-3 sm:px-6 z-0">
             <div className="flex flex-1 justify-between sm:hidden">
                 <a
                     href={links[0].url}

@@ -80,7 +80,7 @@ export default function Dashboard({ auth, mahasiswa, where }) {
                                         Tambah Mahasiswa
                                     </PrimaryButton>
                                 </Link>
-                                <div className="flex">
+                                <div className="flex z-10">
                                     <Popover className="relative">
                                         {({ open }) => (
                                             <>
@@ -267,10 +267,11 @@ export default function Dashboard({ auth, mahasiswa, where }) {
                                             ))
                                         }
                                     </Table>
-                                    <Pagination
-                                        links={mahasiswa.links} />
                                 </div>
                             </div>
+                                    <Pagination
+                                        links={mahasiswa.links}
+                                         />
                         </div>
                     </div>
                 </div>

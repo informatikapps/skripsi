@@ -211,7 +211,7 @@ export default function EditTA({ auth, errors, status, tugasakhir, dosen }) {
                                 type="submit"
                                 className="justify-start bg-amber-500 hover:bg-amber-600 my-4 ml-4"
                             >
-                                Edit
+                                Simpan
                             </PrimaryButton>
                             {tugasakhir.status_acc ?
                                 <Link href={route('admin.tarej', tugasakhir.id)} method="patch" as="button">

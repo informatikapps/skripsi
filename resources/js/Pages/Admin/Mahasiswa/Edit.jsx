@@ -171,7 +171,7 @@ export default function Edit({ auth, errors, status, mahasiswa, dosen }) {
                             className='mt-4'
                             type='submit'
                         >
-                            Edit Mahasiswa
+                            Simpan
                         </PrimaryButton>
                         <Link href={route('admin.reset', mahasiswa.id)} method='post' as='button'>
                         <SecondaryButton

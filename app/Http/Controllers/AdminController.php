@@ -22,6 +22,7 @@ class AdminController extends Controller
         //    return redirect(route("adminlogin")); 
         // }
         $green = Mahasiswa::whereNotNull('dosen_pembimbing_1')->whereNotNull('dosen_pembimbing_2')->whereNotNull('tema')->whereNotNull('pesan')->count();
+        $green = $green - TugasAkhir::where('status_acc', '=', '1')->where('user_id', '!=', auth()->user()->id)->count();
         $yellow = Mahasiswa::whereNull('dosen_pembimbing_1')->whereNull('dosen_pembimbing_2')->whereNotNull('tema')->whereNotNull('pesan')->count();
         $red = Mahasiswa::whereNull('dosen_pembimbing_1')->whereNull('dosen_pembimbing_2')->whereNull('tema')->whereNotNull('pesan')->count();
 
@@ -112,7 +113,7 @@ class AdminController extends Controller
             'name' => $request->name,
             'username' => $request->nim,
             'is_admin' => false,
-            'password' => bcrypt('123456'),
+            'password' => bcrypt('informatika'),
             'has_set_password' => false,
         ]);
         $mahasiswa = Mahasiswa::create([
@@ -134,7 +135,7 @@ class AdminController extends Controller
                     'name' => $mahasiswa->Nama,
                     'username' => $mahasiswa->NIM,
                     'is_admin' => false,
-                    'password' => bcrypt('123456'),
+                    'password' => bcrypt('informatika'),
                     'has_set_password' => false,
                 ]);
                 Mahasiswa::create([
@@ -192,7 +193,7 @@ class AdminController extends Controller
     public function resetPassword($id)
     {
         $user = User::find($id);
-        $user->password = bcrypt('123456');
+        $user->password = bcrypt('informatika');
         $user->has_set_password = false;
         $user->save();
         return redirect(route('admin.mahasiswa'));
