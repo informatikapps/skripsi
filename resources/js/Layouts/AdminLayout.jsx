@@ -218,7 +218,7 @@ export default function AdminLayout({ user, header, back = true, refback, childr
                         </li>
 
                         <li>
-                            <Link href={route('admin.profile')} class="flex items-center p-2 text-neutral-50 rounded-lg dark:text-white hover:bg-amber-300 dark:hover:bg-gray-700 group">
+                            <Link href={route('admin.profile')} className={"flex items-center w-full p-2 text-neutral-50 transition duration-75 rounded-lg group hover:bg-amber-300 dark:text-white dark:hover:bg-gray-700 " + (route().current() == 'admin.profile' ? "bg-amber-500 dark:bg-gray-700" : "")}>
                                 <Cog6ToothIcon className="w-6" />
                                 <span class="ms-3">Pengaturan</span>
                             </Link>

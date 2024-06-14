@@ -130,6 +130,7 @@ class AdminController extends Controller
             // dd($request->mhsJson[0]["NIM"]);
             $mahasiswas = json_decode($request->mhsJson);
             // dd($mahasiswas[0);
+            set_time_limit(0);
             foreach ($mahasiswas as $mahasiswa) {
                 $user = User::create([
                     'name' => $mahasiswa->Nama,
@@ -143,6 +144,7 @@ class AdminController extends Controller
                 ]);
             }
         }
+        set_time_limit(30);
         return redirect(route('admin.mahasiswa'));  
     }
 
