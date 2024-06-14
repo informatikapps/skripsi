@@ -10,6 +10,7 @@ import { Dialog, Popover, Transition, Switch } from '@headlessui/react';
 import { usePrevious } from 'react-use';
 import TextInput from '@/Components/TextInput';
 import {PlusIcon} from '@heroicons/react/20/solid';
+import Toast from '@/Components/Toast';
 
 
 export default function Dashboard({ auth, mahasiswa, where }) {
@@ -64,6 +65,9 @@ export default function Dashboard({ auth, mahasiswa, where }) {
             header={'Kelola Mahasiswa'}
             back={false}
         >
+            <Toast>
+                {"Mahasiswa berhasil ditambahkan!"}
+            </Toast>
             <Head title="Dashboard" />
             <section className="bg-slate-100 mx-24 rounded-b-xl overflow-x-auto">
                 <div className="px-1 py-4 text-lg">
