@@ -85,6 +85,9 @@ class PengumumanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $pengumuman = Informasi::find($id);
+        // dd($pengumuman);
+        $pengumuman->delete();
+        return redirect()->route('pengumuman.index')->with('message', 'Data Pengumuman berhasil dihapus');
     }
 }

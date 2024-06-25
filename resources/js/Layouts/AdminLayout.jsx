@@ -238,8 +238,8 @@ export default function AdminLayout({ user, header, back = true, refback, childr
                 <div className="flex flex-col px-24">
                     <div className="group flex relative">
                         {back && refback ? (
-                            <Link href={refback} className="flex items-center text-indigo-950 dark:text-white">
-                                <ArrowLeftIcon className="w-6 pb-[0px]" />
+                            <Link href={refback} className="flex items-center text-indigo-950 dark:text-white ">
+                                <ArrowLeftIcon className="w-6 pb-[0px] hover:bg-indigo-200 rounded-xl" />
                                 <span></span>
                             </Link>
                         ) : null

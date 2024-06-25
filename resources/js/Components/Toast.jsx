@@ -9,7 +9,7 @@ export default function Toast({ className = '', disabled, children, ...props }) 
         if (show) {
             const timer = setTimeout(() => {
                 setShow(false);
-            }, 2000);
+            }, 1500);
 
             // Clear the timer if the component is unmounted or show state changes
             return () => clearTimeout(timer);

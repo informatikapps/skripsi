@@ -1,5 +1,5 @@
 import AdminAuthenticated from '@/Layouts/AdminLayout';
-import { Head, Link, usePage } from '@inertiajs/react';
+import { Head, Link, usePage, router } from '@inertiajs/react';
 // import {Inertia} from '@inertiajs/inertia';
 import PrimaryButton from '@/Components/PrimaryButton';
 import Table from '@/Components/Table';
@@ -7,6 +7,7 @@ import { Fragment, useState } from 'react';
 import Pagination from '@/Components/Pagination';
 import SearchBar from '@/Components/SearchBar';
 import TextInput from '@/Components/TextInput';
+import { Dialog, Transition } from '@headlessui/react';
 import Toast from '@/Components/Toast'; 
 // import Link from '@/Components/Link';
 
@@ -24,7 +25,7 @@ export default function IndexInfo({ auth, informasi, message }) {
     const closeModal = () => {
         if (deleteItemId) {
             // Execute the deletion and refresh actions
-            router.delete(route('file.destroy', deleteItemId)).then(() => {
+            router.delete(route('pengumuman.destroy', deleteItemId)).then(() => {
                 router.reload(); // Refresh the page after deletion
             });
         }
@@ -92,17 +93,75 @@ export default function IndexInfo({ auth, informasi, message }) {
                                                                     Edit
                                                                 </PrimaryButton>
                                                             </Link>
-                                                            <form method="POST" action={route('pengumuman.destroy', item.id)}>
                                                                 <SecondaryButton
                                                                     className='mr-1 my-2'
-                                                                    as="button"
-                                                                    method="DELETE"
+                                                                    as='button'
+                                                                    onClick={() => openModal(item.id)}
                                                                 >
                                                                     Delete
                                                                 </SecondaryButton>
-                                                            </form>
                                                         </div>
                                                     </td>
+
+                                                    <Transition appear show={isOpen} as={Fragment}>
+                                                        <Dialog as="div" className="relative z-10" onClose={Cancel}>
+                                                            <Transition.Child
+                                                                as={Fragment}
+                                                                enter="ease-out duration-300"
+                                                                enterFrom="opacity-0"
+                                                                enterTo="opacity-100"
+                                                                leave="ease-in duration-200"
+                                                                leaveFrom="opacity-100"
+                                                                leaveTo="opacity-0"
+                                                            >
+                                                                <div className="fixed inset-0 bg-black/25" />
+                                                            </Transition.Child>
+
+                                                            <div className="fixed inset-0 overflow-y-auto">
+                                                                <div className="flex min-h-full items-center justify-center p-4 text-center">
+                                                                    <Transition.Child
+                                                                        as={Fragment}
+                                                                        enter="ease-out duration-300"
+                                                                        enterFrom="opacity-0 scale-95"
+                                                                        enterTo="opacity-100 scale-100"
+                                                                        leave="ease-in duration-200"
+                                                                        leaveFrom="opacity-100 scale-100"
+                                                                        leaveTo="opacity-0 scale-95"
+                                                                    >
+                                                                        <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                                                                            <Dialog.Title
+                                                                                as="h3"
+                                                                                className="text-lg font-medium leading-6 text-gray-900"
+                                                                            >
+                                                                                Konfirmasi penghapusan
+                                                                            </Dialog.Title>
+                                                                            <div className="mt-2">
+                                                                                <p className="text-sm text-gray-500">
+                                                                                    Apakah anda yakin ingin menghapus file ini?
+                                                                                </p>
+                                                                            </div>
+
+                                                                            <div className="mt-4">
+                                                                                <button
+                                                                                    type="button"
+                                                                                    className="inline-flex justify-center rounded-lg border border-transparent bg-indigo-950 px-4 py-2 text-xs font-medium capitalize text-neutral-100 hover:bg-indigo-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                                                                    onClick={closeModal}
+                                                                                >
+                                                                                    Ya
+                                                                                </button>
+                                                                                <SecondaryButton
+                                                                                    className='ml-2'
+                                                                                    onClick={Cancel}
+                                                                                >
+                                                                                    Tidak
+                                                                                </SecondaryButton>
+                                                                            </div>
+                                                                        </Dialog.Panel>
+                                                                    </Transition.Child>
+                                                                </div>
+                                                            </div>
+                                                        </Dialog>
+                                                    </Transition>
                                                 </tr>
                                             ))
 

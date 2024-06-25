@@ -29,7 +29,11 @@ export default function CreateInfo({ auth, informasi, formErrors }) {
 
 
     return (
-        <AdminLayout header={'Edit Informasi'}>
+        <AdminLayout 
+            header={'Edit Informasi'}
+            refback={route('pengumuman.index')}
+        
+        >
             <Head title={'Edit Informasi'} />
             <div className='mx-24 mt-3 bg-slate-100 px-24 py-5 rounded-lg'>
                 <form onSubmit={handleSubmit}>
