@@ -13,11 +13,14 @@ import {PlusIcon} from '@heroicons/react/20/solid';
 import Toast from '@/Components/Toast';
 
 
-export default function Dashboard({ auth, mahasiswa, where }) {
+export default function Dashboard({ auth, mahasiswa, where, message }) {
     const [enabled, setEnabled] = useState(where); // this is actually a VERY BAD practice, but I'm too lazy to change the variable name
     const [searchKeyword, setSearchKeyword] = useState('')
     const [isOpen, setIsOpen] = useState(false);
     const [deleteItemId, setDeleteItemId] = useState(null); // State to store the ID of the item to delete
+
+
+    console.log('message', message)
 
     const openModal = (id) => {
         setDeleteItemId(id); // Set the ID of the item to delete
@@ -65,9 +68,11 @@ export default function Dashboard({ auth, mahasiswa, where }) {
             header={'Kelola Mahasiswa'}
             back={false}
         >
-            <Toast>
-                {"Mahasiswa berhasil ditambahkan!"}
+            {message &&
+                <Toast>
+                {message}
             </Toast>
+            }
             <Head title="Dashboard" />
             <section className="bg-slate-100 mx-24 rounded-b-xl overflow-x-auto">
                 <div className="px-1 py-4 text-lg">

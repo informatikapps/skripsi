@@ -92,6 +92,7 @@ class AdminController extends Controller
                 'mahasiswa' => $mahasiswa,
                 'where' => $where,
                 'search' => $search,
+                'message' => $request->session()->get('message'),
             ]
         );
     }
@@ -119,7 +120,8 @@ class AdminController extends Controller
         $mahasiswa = Mahasiswa::create([
             'user_id' => $user->id,
         ]);
-        return redirect(route('admin.mahasiswa'));
+        
+        return redirect(route('admin.mahasiswa'))->with('message', 'Data Mahasiswa berhasil ditambahkan');
     }
 
 
@@ -145,7 +147,7 @@ class AdminController extends Controller
             }
         }
         set_time_limit(30);
-        return redirect(route('admin.mahasiswa'));  
+        return redirect(route('admin.mahasiswa'))->with('message', 'Data Mahasiswa berhasil ditambahkan');  
     }
 
     public function tugasakhir()
@@ -181,14 +183,14 @@ class AdminController extends Controller
         $mahasiswa->dosen_pembimbing_2 = $request->dosen_pembimbing_2;
         $mahasiswa->save();
         // dd($mahasiswa);
-        return redirect(route('admin.mahasiswa'));
+        return redirect(route('admin.mahasiswa'))->with('message', 'Data mahasiswa berhasil diubah');
     }
 
     public function mahasiswaDelete($id)
     {
         $user = User::find($id);
         $user->delete();
-        return redirect()->back()->with('message', 'Data berhasil dihapus');
+        return redirect()->back()->with('message', 'Data mahasiswa berhasil dihapus');
     }
 
 
@@ -198,7 +200,7 @@ class AdminController extends Controller
         $user->password = bcrypt('informatika');
         $user->has_set_password = false;
         $user->save();
-        return redirect(route('admin.mahasiswa'));
+        return redirect(route('admin.mahasiswa'))->with('message', 'Password Mahasiswa berhasil direset');
     }
 
     public function updateUser(Request $request)
