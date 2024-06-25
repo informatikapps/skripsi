@@ -30,7 +30,7 @@ export default function Toast({ className = '', disabled, children, ...props }) 
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
         >
-            <div className={clsx("flex items-center w-full max-w-xl p-4 text-white bg-lime-400/90 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 z-20 top-3 right-3 absolute", className)} {...props}>
+            <div className={clsx("flex items-center w-full max-w-xl p-4 text-white bg-lime-300/90 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800 z-20 top-3 right-3 absolute", className)} {...props}>
                 <div className="text-base font-normal">
                     {children}
                 </div>

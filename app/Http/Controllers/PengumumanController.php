@@ -18,7 +18,8 @@ class PengumumanController extends Controller
                 ->orWhere('isi_info', 'like', '%' . request('search') . '%');
         })->paginate(10);
         return Inertia::render('Admin/Informasi/Index', [
-            'informasi' => $informasi
+            'informasi' => $informasi,
+            'message' => $request->session()->get('message'),
         ]);
     }
 
@@ -42,7 +43,7 @@ class PengumumanController extends Controller
                 'isi_info' => $request->konten,
             ]
         );
-        return redirect()->route('pengumuman.index');
+        return redirect()->route('pengumuman.index')->with('message', 'Data Pengumuman berhasil ditambahkan');
     }
 
     /**
@@ -76,7 +77,7 @@ class PengumumanController extends Controller
                 'isi_info' => $request->konten,
             ]
         );
-        return redirect()->route('pengumuman.index');
+        return redirect()->route('pengumuman.index')->with('message', 'Data Pengumuman berhasil diubah');
     }
 
     /**

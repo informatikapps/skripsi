@@ -10,8 +10,9 @@ import TextInput from '@/Components/TextInput';
 import { PlusIcon } from '@heroicons/react/20/solid';
 import {Dialog, Transition} from '@headlessui/react';
 import SecondaryButton from '@/Components/SecondaryButton';
+import Toast from '@/Components/Toast'; 
 
-export default function IndexDosen({ auth, dosen, search }) {
+export default function IndexDosen({ auth, dosen, search , message}) {
 
     const [searchKeyword, setSearchKeyword] = useState('')    
     const [isOpen, setIsOpen] = useState(false);
@@ -55,6 +56,11 @@ export default function IndexDosen({ auth, dosen, search }) {
             back={false}
             desc={'Halaman ini berisikan informasi tentang dosen.'}
         >
+            {message &&
+                <Toast className='top-3 right-3' onClose={() => setMessage('')}>
+                    {message}
+                </Toast>    
+            }
             <Head title="Dosen" />
             <section className="bg-slate-100 mx-24 rounded-b-xl">
                 <div className="px-2 py-4 text-lg">

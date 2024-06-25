@@ -9,18 +9,13 @@ import Pagination from '@/Components/Pagination';
 import { ArrowDownTrayIcon, PlusIcon } from '@heroicons/react/20/solid';
 import TextInput from '@/Components/TextInput';
 import { Dialog, Transition } from '@headlessui/react'
+import Toast from '@/Components/Toast';
 
 // import Link from '@/Components/Link';
 
 import SecondaryButton from '@/Components/SecondaryButton';
 
-export default function IndexFile({ auth, files }) {
-
-    // const { route } = usePage().props
-    // Inertia.get(route('admin.tugasakhir'))
-    // console.log('tugasakhir', tugasakhir)
-    // Inertia.get('/admin/tugasakhir', { page: 1 })
-    // console.log('informasi', informasi)
+export default function IndexFile({ auth, files, message }) {
 
     const [isOpen, setIsOpen] = useState(false);
     const [deleteItemId, setDeleteItemId] = useState(null); // State to store the ID of the item to delete
@@ -43,10 +38,6 @@ export default function IndexFile({ auth, files }) {
     const Cancel = () => {
         setIsOpen(false)
     }
-    
-
-
-
 
     return (
 
@@ -55,6 +46,11 @@ export default function IndexFile({ auth, files }) {
             header={'Kelola File'}
             back={false}
         >
+            {message && (
+                <Toast className='top-3 right-3' onClose={() => setMessage('')}>
+                    {message}
+                </Toast>
+            )}
             <Head title="Kelola File" />
             <section className="bg-slate-100 mx-24 rounded-b-xl overflow-y-auto">
                 <div className="px-2 py-4 text-lg">

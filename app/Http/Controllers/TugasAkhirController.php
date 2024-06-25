@@ -65,7 +65,8 @@ class TugasAkhirController extends Controller
         return Inertia::render('Admin/TugasAkhir/Index', [
             'tugasakhir' => $tugasakhir,
             'status_acc' => $request->input('status_acc'),
-            'search' => $request->input('search')
+            'search' => $request->input('search'),
+            'message' => $request->session()->get('message')
         ]);
     }
 
@@ -98,7 +99,7 @@ class TugasAkhirController extends Controller
                     'status_acc' => true,
                 ]);
             }
-            return redirect(route('admin.ta')); 
+            return redirect(route('admin.ta'))->with('message', 'Data tugas akhir berhasil ditambahkan'); 
         }
         $dosbing_1 = Dosen::find($request->pembimbing_1);
         $dosbing_2 = Dosen::find($request->pembimbing_2);
@@ -116,7 +117,7 @@ class TugasAkhirController extends Controller
             'periode' => $request->periode,
             'status_acc' => true,
         ]);
-        return redirect(route('admin.ta'));
+        return redirect(route('admin.ta'))->with('message', 'Data tugas akhir berhasil ditambahkan');
     }
 
     public function adminedit($id){
@@ -141,7 +142,7 @@ class TugasAkhirController extends Controller
         $ta->nama_pembimbing_2 = $dosbing_2->nama_dosen;
         $ta->periode = $request->periode;
         $ta->save();
-        return redirect(route('admin.ta'));
+        return redirect(route('admin.ta'))->with('message', 'Data tugas akhir berhasil diubah');
     }
 
     public function adminacc(string $id){
@@ -169,7 +170,7 @@ class TugasAkhirController extends Controller
     public function delete($id){
         $ta = TugasAkhir::find($id);
         $ta->delete();
-        return redirect(route('admin.ta'));
+        return redirect(route('admin.ta'))->with('message', 'Data tugas akhir berhasil dihapus');
     }
 
     public function create(){

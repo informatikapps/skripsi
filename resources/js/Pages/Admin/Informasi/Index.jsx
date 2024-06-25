@@ -7,18 +7,33 @@ import { Fragment, useState } from 'react';
 import Pagination from '@/Components/Pagination';
 import SearchBar from '@/Components/SearchBar';
 import TextInput from '@/Components/TextInput';
+import Toast from '@/Components/Toast'; 
 // import Link from '@/Components/Link';
 
 import SecondaryButton from '@/Components/SecondaryButton';
 
-export default function IndexInfo({ auth, informasi }) {
+export default function IndexInfo({ auth, informasi, message }) {
+    const [isOpen, setIsOpen] = useState(false);
+    const [deleteItemId, setDeleteItemId] = useState(null); // State to store the ID of the item to delete
 
-    // const { route } = usePage().props
-    // Inertia.get(route('admin.tugasakhir'))
-    // console.log('tugasakhir', tugasakhir)
-    // Inertia.get('/admin/tugasakhir', { page: 1 })
-    // console.log('informasi', informasi)
+    const openModal = (id) => {
+        setDeleteItemId(id); // Set the ID of the item to delete
+        setIsOpen(true);
+    };
 
+    const closeModal = () => {
+        if (deleteItemId) {
+            // Execute the deletion and refresh actions
+            router.delete(route('file.destroy', deleteItemId)).then(() => {
+                router.reload(); // Refresh the page after deletion
+            });
+        }
+        setIsOpen(false);
+    };
+
+    const Cancel = () => {
+        setIsOpen(false)
+    }
 
     return (
 
@@ -28,6 +43,11 @@ export default function IndexInfo({ auth, informasi }) {
             back={false}
             desc='Informasi yang ditampilkan pada halaman utama'
         >
+            {message && (
+                <Toast className='top-3 right-3' onClose={() => setMessage('')}>
+                    {message}
+                </Toast>
+            )}
             <Head title="Tugas Akhir" />
             <section className="bg-slate-100 mx-24 rounded-b-xl overflow-y-auto">
                 <div className="px-2 py-4 text-lg">

@@ -43,7 +43,7 @@ export default function CreateTA({ auth, errors, status, image, dosen }) {
 
     // console.log('helo')
     // console.log(image)
-    console.log('data', data)
+    // console.log('data', data)
 
     const handleSubmit = (e) => {
         e.preventDefault()

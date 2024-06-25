@@ -32,7 +32,7 @@ class PengumumanFileController extends Controller
         return Inertia::render('Dashboard', [
                 'informasi' => $informasi,
                 'has_set_profile' => $has_set_profile,
-            'search' => $search
+            'search' => $search,
         ]);
     }
 

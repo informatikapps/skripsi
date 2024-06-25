@@ -44,7 +44,7 @@ export default function EditTA({ auth, errors, status, tugasakhir, dosen }) {
     // console.log('data', data)
     // console.log('dosen', dosen.find(item => item.nip == tugasakhir.ni_pembimbing_1))
 
-    console.log('route', route('admin.taacc', tugasakhir.id))
+    // console.log('route', route('admin.taacc', tugasakhir.id))
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -213,7 +213,7 @@ export default function EditTA({ auth, errors, status, tugasakhir, dosen }) {
                             >
                                 Simpan
                             </PrimaryButton>
-                            {tugasakhir.status_acc ?
+                            {tugasakhir.status_acc && tugasakhir.user_id != auth.user.id ?
                                 <Link href={route('admin.tarej', tugasakhir.id)} method="patch" as="button">
                                     <SecondaryButton
                                         onClick={handleReject}

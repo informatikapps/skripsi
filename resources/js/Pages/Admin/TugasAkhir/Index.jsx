@@ -1,4 +1,5 @@
 import AdminAuthenticated from '@/Layouts/AdminLayout';
+import Toast from '@/Components/Toast';
 import { Head, Link, router } from '@inertiajs/react';
 // import {Inertia} from '@inertiajs/inertia';
 import PrimaryButton from '@/Components/PrimaryButton';
@@ -14,7 +15,7 @@ import SecondaryButton from '@/Components/SecondaryButton';
 // import Link from '@/Components/Link';
 
 
-export default function IndexTA({ auth, tugasakhir, status_acc, search }) {
+export default function IndexTA({ auth, tugasakhir, status_acc, search, message}) {
 
     const [enabled, setEnabled] = useState(false); // this is actually a VERY BAD practice, but I'm too lazy to change the variable name
     const [searchKeyword, setSearchKeyword] = useState(''); // this is actually a VERY BAD practice, but I'm too lazy to change the variable name
@@ -75,6 +76,11 @@ export default function IndexTA({ auth, tugasakhir, status_acc, search }) {
             header={'Kelola Tugas Akhir'}
             back={false}
         >
+            {message &&
+                <Toast>
+                    {message}
+                </Toast>
+            }
             <Head title="Tugas Akhir" />
             <section className="bg-slate-100 mx-24 rounded-b-xl overflow-y-auto">
                 <div className="px-2 py-4 text-lg">
