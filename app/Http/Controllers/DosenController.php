@@ -12,7 +12,7 @@ class DosenController extends Controller
     {
         $dosen = Dosen::where('nama_dosen', 'like', '%'.$request->search.'%')->orWhere('nip', 'like', '%'.$request->search.'%')->paginate(10)->appends($request->all())->withQueryString();
         // dd($dosen);
-        return Inertia::render('Admin/Dosen/Index', ['dosen' => $dosen, 'search' => $request->search]);
+        return Inertia::render('Admin/Dosen/Index', ['dosen' => $dosen, 'search' => $request->search, 'message' => $request->session()->get('message')]);
     }   
 
     public function create()
@@ -39,7 +39,7 @@ class DosenController extends Controller
                 'keterangan' => $request->keterangan,
             ]
         );
-        return redirect(route('dosen.index'))->with('success', 'Data berhasil ditambahkan');
+        return redirect(route('dosen.index'))->with('message', 'Data berhasil ditambahkan');
     }
 
     public function show($id)
@@ -65,7 +65,7 @@ class DosenController extends Controller
                 'keterangan' => $request->keterangan,
             ]
         );
-        return redirect(route('dosen.index'))->with('success', 'Data berhasil diubah');
+        return redirect(route('dosen.index'))->with('message', 'Data berhasil diubah');
     }
 
     public function destroy($id)
@@ -74,7 +74,7 @@ class DosenController extends Controller
         $dosen = Dosen::findOrFail($id);
         $dosen->delete();
 
-        return redirect()->back()->with('success', 'Data berhasil dihapus');
+        return redirect()->back()->with('message', 'Data berhasil dihapus');
     }
     
 }

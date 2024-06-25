@@ -12,7 +12,7 @@ class FileController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $files = File::when(request('search'), function ($query) {
             $query->where('nama_file', 'like', '%' . request('search') . '%')
@@ -21,7 +21,8 @@ class FileController extends Controller
         ->paginate(10);
 
         return Inertia::render('Admin/File/Index', [
-            'files' => $files
+            'files' => $files,
+            'message' => $request->session()->get('message'), 
         ]);
     }
 
@@ -57,7 +58,7 @@ class FileController extends Controller
             'is_public' => true
         ]);
 
-        return redirect()->route('file.index')->with('success', 'File berhasil ditambahkan');
+        return redirect()->route('file.index')->with('message', 'File berhasil ditambahkan');
     }
 
     /**
@@ -107,7 +108,7 @@ class FileController extends Controller
             $file->save();
         }
 
-        return redirect()->route('file.index')->with('success', 'File berhasil ditambahkan');
+        return redirect()->route('file.index')->with('message', 'File berhasil ditambahkan');
     }
 
     /**
@@ -122,7 +123,7 @@ class FileController extends Controller
         Storage::delete('public/files/'.$file->alamat_url);
         $file->delete();
 
-        return redirect()->route('file.index')->with('success', 'File berhasil dihapus');
+        return redirect()->route('file.index')->with('message', 'File berhasil dihapus');
 
     }
 }
