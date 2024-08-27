@@ -42,6 +42,7 @@ class ProfileMahasiswaController extends Controller
             'mahasiswa' => $mahasiswa,
             'dosbing1' => $dosbing1,
             'dosbing2' => $dosbing2,
+            'message' => session('message'),
         ]);
     }
 
@@ -65,7 +66,7 @@ class ProfileMahasiswaController extends Controller
         $mahasiswa->tema = $request->tema;
         $mahasiswa->pesan = $request->pesan;
         $mahasiswa->save();
-        return redirect()->back()->with('success', 'Data berhasil diubah');
+        return redirect()->back()->with('message', 'Data berhasil diubah');
     }
 
     public function tugasakhir(){
@@ -78,7 +79,7 @@ class ProfileMahasiswaController extends Controller
             $nama_dosbing = null;
             $nip_dosbing = null;
         }
-        return Inertia::render('Mahasiswa/Profile/TugasAkhir', ["nama_dosbing" => $nama_dosbing, "nip_dosbing"=> $nip_dosbing, "judul" => $judul]);
+        return Inertia::render('Mahasiswa/Profile/TugasAkhir', ["nama_dosbing" => $nama_dosbing, "nip_dosbing"=> $nip_dosbing, "judul" => $judul, "message" => session('message')]);
     }
 
     public function tugasakhirPost(Request $request){

@@ -44,7 +44,7 @@ export default function CreateDosen({ auth, errors, status, image }) {
                 <div className="w-full ">
                     <form method="post" action={route('dosen.store')} className="items-center px-12 pt-6 pb-1 mb-4 " onSubmit={handleSubmit}>
                         <div className='flex mt-4'>
-                            <InputLabel htmlFor='name' value='Nama Dosen' className='w-[18%] pt-4' />
+                            <InputLabel htmlFor='name' value='Nama Dosen' className='w-[18%] pt-4' optional={false} />
                             <TextInput
                                 id='name'
                                 type='text'
@@ -55,7 +55,7 @@ export default function CreateDosen({ auth, errors, status, image }) {
                             />
                         </div> 
                         <div className='flex mt-4'>
-                            <InputLabel htmlFor='nip' value='NIP' className='w-[18%] pt-4' />
+                            <InputLabel htmlFor='nip' value='NIP' className='w-[18%] pt-4' optional={false} />
                             <TextInput
                                 id='nip'
                                 type='text'
@@ -66,7 +66,7 @@ export default function CreateDosen({ auth, errors, status, image }) {
                             />
                         </div>
                         <div className='flex mt-4'>
-                            <InputLabel htmlFor='no_hp' value='No. HP' className='w-[18%] pt-4' />
+                            <InputLabel htmlFor='no_hp' value='No. HP' className='w-[18%] pt-4' optional={false}/>
                             <TextInput
                                 id='no_hp'
                                 type='text'
@@ -88,7 +88,7 @@ export default function CreateDosen({ auth, errors, status, image }) {
                             />
                         </div>
                         <div className='flex mt-4'>
-                            <PrimaryButton type='submit' disabled={processing}>
+                            <PrimaryButton type='submit' disabled={processing || data.name.length < 1 || data.nip.length < 15 || data.no_hp.length < 10}>
                                 Tambahkan
                             </PrimaryButton>
                         </div>

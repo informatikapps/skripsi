@@ -171,6 +171,7 @@ export default function Example({ auth, errors, status, image }) {
                                                 htmlFor="nama"
                                                 value="Nama"
                                                 className='pr-3 py-2 mt-2'
+                                                optional={false}
                                             />
                                             <TextInput
                                                 type="text"
@@ -180,6 +181,7 @@ export default function Example({ auth, errors, status, image }) {
                                                 className="w-96"
                                                 autoComplete="nama"
                                                 isFocused={true}
+                                                
                                             />
                                         </div>
                                         <div className='flex mt-3'>
@@ -187,6 +189,7 @@ export default function Example({ auth, errors, status, image }) {
                                                 htmlFor="NIM"
                                                 value="NIM"
                                                 className='px-3 py-2 mt-2'
+                                                optional={false}
                                             />
                                             <TextInput
                                                 type="text"
@@ -196,6 +199,7 @@ export default function Example({ auth, errors, status, image }) {
                                                 className="w-56"
                                                 autoComplete="nim"
                                                 isFocused={true}
+                                                
                                             />
                                         </div>
 
@@ -204,7 +208,7 @@ export default function Example({ auth, errors, status, image }) {
                                         <PrimaryButton
                                             type="submit"
                                             className="w-24 justify-start bg-amber-500 hover:bg-amber-600 mt-4 ml-4"
-                                            processing={processing}
+                                            disabled={processing || data.name.length < 1 || data.nim.length < 1}
                                         >
                                             Tambah
                                         </PrimaryButton>
@@ -304,7 +308,7 @@ export default function Example({ auth, errors, status, image }) {
                                         <PrimaryButton
                                             type="submit"
                                             className="w-24 justify-start bg-amber-500 hover:bg-amber-600 mt-2 ml-2"
-                                            processing={processing}
+                                            disabled={processing || data.mhsJson == null}
                                         >
                                             Tambah
                                         </PrimaryButton>
