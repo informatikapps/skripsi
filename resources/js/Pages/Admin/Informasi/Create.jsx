@@ -34,7 +34,7 @@ export default function CreateInfo({auth, informasi, formErrors}){
             <div className='mx-24 mt-3 bg-slate-100 px-24 py-5 rounded-lg'>
                 <form onSubmit={handleSubmit}>
                 <div className='flex'>
-                    <InputLabel value='Judul' className='w-1/12 my-auto' />
+                    <InputLabel value='Judul' className='w-1/12 my-auto' optional={false} />
                     <TextInput
                         className='mt-1 rounded-lg w-full'
                         name='judul'
@@ -44,7 +44,7 @@ export default function CreateInfo({auth, informasi, formErrors}){
                     />
                 </div>
                 <div className="flex mt-3">
-                    <InputLabel value='Konten' className='w-[12%] my-auto mt-1' />
+                    <InputLabel value='Konten' className='w-[12%] my-auto mt-1' optional={false}/>
                 </div>
                 <div className="flex mt-3">
                     <ReactQuill
@@ -59,7 +59,7 @@ export default function CreateInfo({auth, informasi, formErrors}){
                 <div className="flex mt-3">
                     <PrimaryButton 
                         className='mt-1' 
-                        processing={processing}
+                        disabled={processing || data.judul.length < 1 || data.konten.length < 1}
                         type='submit'
                         >
                         Buat

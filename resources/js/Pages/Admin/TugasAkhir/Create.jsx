@@ -142,7 +142,7 @@ export default function CreateTA({ auth, errors, status, image, dosen }) {
 
                                     <div className='px-8 py-3 bg-slate-100 rounded-lg'>
                                         <div className='flex'>
-                                            <InputLabel value='NIM' className='w-1/12 my-auto' />
+                                            <InputLabel value='NIM' className='w-1/12 my-auto' optional={false} />
                                             <TextInput
                                                 className='mt-1 rounded-lg w-1/3'
                                                 errors={formErrors.nim}
@@ -153,7 +153,7 @@ export default function CreateTA({ auth, errors, status, image, dosen }) {
                                             />
                                         </div>
                                         <div className='flex'>
-                                            <InputLabel value='Nama' className='w-1/12 my-auto' />
+                                            <InputLabel value='Nama' className='w-1/12 my-auto' optional={false} />
                                             <TextInput
                                                 className='mt-1 rounded-lg w-1/3'
                                                 errors={formErrors.name}
@@ -164,7 +164,7 @@ export default function CreateTA({ auth, errors, status, image, dosen }) {
                                             />
                                         </div>
                                         <div className='flex'>
-                                            <InputLabel value='Judul' className='w-1/12 my-auto' />
+                                            <InputLabel value='Judul' className='w-1/12 my-auto' optional={false} />
                                             <TextInput
                                                 className='mt-1 rounded-lg w-1/2'
                                                 errors={formErrors.name}
@@ -175,7 +175,7 @@ export default function CreateTA({ auth, errors, status, image, dosen }) {
                                             />
                                         </div>
                                         <div className='flex'>
-                                            <InputLabel value='Abstrak' className='w-1/12 my-auto' />
+                                            <InputLabel value='Abstrak' className='w-1/12 my-auto' optional={false} />
                                             <textarea
                                                 type="text"
                                                 name="abstrak"
@@ -188,7 +188,7 @@ export default function CreateTA({ auth, errors, status, image, dosen }) {
                                             />
                                         </div>
                                         <div className='flex'>
-                                            <InputLabel value='Pembimbing 1' className='w-1/6 my-auto' />
+                                            <InputLabel value='Pembimbing 1' className='w-1/6 my-auto' optional={false} />
                                             <select
                                                 name="dosbing"
                                                 id="dosbing"
@@ -203,7 +203,7 @@ export default function CreateTA({ auth, errors, status, image, dosen }) {
                                             </select>
                                         </div>
                                         <div className='flex'>
-                                            <InputLabel value='Pembimbing 2' className='w-1/6 my-auto' />
+                                            <InputLabel value='Pembimbing 2' className='w-1/6 my-auto' optional={false} />
                                             <select
                                                 name="dosbing"
                                                 id="dosbing"
@@ -218,7 +218,7 @@ export default function CreateTA({ auth, errors, status, image, dosen }) {
                                             </select>
                                         </div>
                                         <div className='flex'>
-                                            <InputLabel value='Periode' className='w-1/12 my-auto' />
+                                            <InputLabel value='Periode' className='w-1/12 my-auto' optional={false} />
                                             <select
                                                 name="periode"
                                                 id="periode"
@@ -237,6 +237,7 @@ export default function CreateTA({ auth, errors, status, image, dosen }) {
                                         <PrimaryButton
                                             type="submit"
                                             className="w-24 justify-start bg-amber-500 hover:bg-amber-600 mt-4 ml-8"
+                                            disabled={processing || data.name.length < 1 || data.nim.length < 1 || data.judul.length < 1 || data.abstrak.length < 1 || data.pembimbing_1.length < 1 || data.pembimbing_2.length < 1}
                                         >
                                             Tambah
                                         </PrimaryButton>
@@ -307,6 +308,7 @@ export default function CreateTA({ auth, errors, status, image, dosen }) {
                                         <PrimaryButton
                                             type="submit"
                                             className="w-24 justify-start bg-amber-500 hover:bg-amber-600 mt-2 ml-1"
+                                            disabled={processing || data.file == null}
                                         >
                                             Tambah
                                         </PrimaryButton>

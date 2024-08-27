@@ -64,7 +64,7 @@ export default function Create() {
             <Head title="Tambah File" />
             <form method="post" action={route('file.store')} className="bg-slate-100 shadow-md rounded items-center px-12 pt-6 pb-8 mb-4 mx-24" onSubmit={handleSubmit}>
                 <div className="flex mb-4">
-                    <InputLabel htmlFor="judul" value="Judul File" className="w-1/12 pt-4" />
+                    <InputLabel htmlFor="judul" value="Judul File" className="w-1/12 pt-4" optional={false} />
                     <TextInput
                         id="judul_info"
                         type="text"
@@ -85,7 +85,7 @@ export default function Create() {
                     />
                 </div>
                 <div className="flex my-3">
-                    <InputLabel htmlFor="file" value="Pilih File" className="w-1/12 pt-4" />
+                    <InputLabel htmlFor="file" value="Pilih File" className="w-1/12 pt-4" optional={false} />
                     {!hideFile &&
                         <label htmlFor="dropzone-file"
                             className={"flex flex-col items-center justify-center w-3/4 h-40 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600" + (isDragOver ? ' border-indigo-500' : '')}
@@ -117,7 +117,7 @@ export default function Create() {
                 <PrimaryButton
                     className=""
                     type="submit"
-                    processing={processing}
+                    diasbled={processing || data.judul_file.length < 1}
                 >
                     Tambah File
                 </PrimaryButton>
