@@ -4,12 +4,13 @@ import TextInput from '@/Components/TextInput';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import SecondaryButton from '@/Components/SecondaryButton';
+import Toast from '@/Components/Toast';
 import { ExclamationCircleIcon, PlusCircleIcon } from '@heroicons/react/20/solid';
 import Password from '@/Components/Password';
 import { useEffect, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 
-export default function Edit({ auth, errors, status, mahasiswa, dosbing1, dosbing2 }) {
+export default function Edit({ auth, errors, status, mahasiswa, dosbing1, dosbing2, message }) {
 
     const { data, setData, patch, processing, errors: formErrors } = useForm({
         name: auth.user.name,
@@ -37,7 +38,7 @@ export default function Edit({ auth, errors, status, mahasiswa, dosbing1, dosbin
 
     // console.log('data', data)
     // console.log('mahasiswa.tema', mahasiswa.tema)
-    console.log('data.irs', data)
+    // console.log('data.irs', data)
 
     const updated_at = new Date(mahasiswa.updated_at)
 
@@ -61,6 +62,11 @@ export default function Edit({ auth, errors, status, mahasiswa, dosbing1, dosbin
             header={'Profile'}
 
         >
+            {message &&
+                <Toast className='top-3 right-3' onClose={() => setMessage('')}>
+                    {message}
+                </Toast>
+            }
             <Head title="Profile" />
             <div className='max-w-7xl mx-18 space-y-6'>
                 <section className='sm:py-8 sm:px-14 bg-slate-100 shadow rounded-xl mx-24'>

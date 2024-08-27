@@ -3,10 +3,11 @@ import { Head, Link, useForm } from '@inertiajs/react';
 import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
 import PrimaryButton from '@/Components/PrimaryButton';
+import Toast from '@/Components/Toast';
 import { ExclamationCircleIcon } from '@heroicons/react/20/solid';
 import { useState } from 'react';
 
-export default function Saya({ auth, mahasiswa, tugasAkhir, periode }) {
+export default function Saya({ auth, mahasiswa, tugasAkhir, periode , message}) {
 
     const { data, setData, post, processing, errors, reset } = useForm({
         judul: (tugasAkhir ? tugasAkhir.judul_ta : ''),
@@ -38,6 +39,12 @@ export default function Saya({ auth, mahasiswa, tugasAkhir, periode }) {
             back={false}
             desc={'Silakan isi judul dan abstrak dari tugas akhir Anda. Sertakan juga file dari tugas akhir untuk diinput ke dalam sistem.'}
         >
+            {message &&
+                <Toast className='top-3 right-3' onClose={() => setMessage('')}>
+                    {message}
+                </Toast>
+            }
+
             <Head title="Tugas Akhir Saya" />
 
             <section className="sm:px-6 lg:px-8 mt-1 mx-16 rounded-lg">
